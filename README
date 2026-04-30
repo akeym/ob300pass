@@ -1,0 +1,35 @@
+This is a script to generate a bypass password for an HP Omnibook 300.  If you
+don't know or have forgotten your lock password, press alt+shift+F10 when 
+prompted for a password.  A one-time code will be displayed.  Provide this as
+the only argument to `obpass.py` to get the corresponding password.
+
+A lookup table is also provided in lut.txt.  Start with column 1, find the
+first char of the bypass password and then use the value in the 'chr' column
+on the same row.  Repeat for
+
+The script `obtable.py` generates a table that can be used to convert the 
+values in CMOS memory by hand. The output is also provided in lut.txt.
+Given plaintext in column 2, the corresponding char is stored in memory
+for a given character position (1-8).  For example, if the stored password
+starts with 1, S is the value stored.  For some values multiple plaintext
+values are valid.  If M is stored for the first char in CMOS memory,
+entering + or V will be accepted.  The reverse can also be done for a
+displayed bypass/recovery password.  Find the chars of the displayed
+password in columns 1-8 and use the corresponding value in the chr column
+on the same row.
+
+The password is not case-sensitive.  The function to generate the one-time
+password operates similarly to how it stores a user password in CMOS and
+OBMGM.DAT. The difference being that the one-time password is bounded 
+to show only upper-case letters and numbers.
+
+The password for an Omnibook 300 is stored in volatile CMOS memory starting at
+0x36, with a simple checksum after.  The password is also stored in OBMGM.DAT
+at the root of your writeable boot storage.  To remove a password you don't 
+know just plug the card/drive in a different machine and remove this file.  
+After the internal supercaps discharge, boot up and there should no longer
+be a prompt for a password.  Ownership data and other settings will also be
+reset as those are only stored in the DAT file.  If you only allow the caps
+to discharge, the ROM card that you're forced to boot from will read OBMGM.DAT
+and restore the password to CMOS memory.
+
