@@ -3,10 +3,6 @@ don't know or have forgotten your lock password, press alt+shift+F10 when
 prompted for a password.  A one-time code will be displayed.  Provide this as
 the only argument to `obpass.py` to get the corresponding password.
 
-A lookup table is also provided in lut.txt.  Start with column 1, find the
-first char of the bypass password and then use the value in the 'chr' column
-on the same row.  Repeat for
-
 The script `obtable.py` generates a table that can be used to convert the 
 values in CMOS memory by hand. The output is also provided in lut.txt.
 Given plaintext in column 2, the corresponding char is stored in memory
